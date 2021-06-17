@@ -1,0 +1,48 @@
+services:
+
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:stable
+    ports:
+      - '8000:80'
+    volumes:
+      - /data/nextcloud:/var/www/html
+
+  gitlab:
+    container_name: gitlab
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://${IP}:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        puma['max_threads'] = 2
+        puma['min_threads'] = 1
+        sidekiq['max_concurrency'] = 16
+        postgresql['max_worker_processes'] = 4
+    image: gitlab/gitlab-ee:latest
+    memswap_limit: -1
+    ports:
+      - '8929:8929'
+      - '2224:2224'
+    volumes:
+      - /data/gitlab/config:/etc/gitlab
+      - /data/gitlab/data:/var/opt/gitlab
+      - /data/gitlab/logs:/var/log/gitlab
+
+  pypiserver:
+    container_name: pypiserver
+    image: pypiserver/pypiserver:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - /data/pypiserver/packages:/data/packages
+
+  jupyter:
+    container_name: jupyter
+    image: jupyter/scipy-notebook:latest
+    ports:
+      - '8888:8888'
+      
