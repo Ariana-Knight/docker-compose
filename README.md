@@ -15,9 +15,9 @@ docker-compose.yml for fast setup on my CVM.
 
 ## Docker components
 
-|Name|Reference|
-|-|-|
-|nextcloud|https://github.com/nextcloud/docker
-|gitlab|https://docs.gitlab.com/omnibus/docker/
-|pypiserver|https://github.com/pypiserver/pypiserver#using-the-docker-image
-|jupyter|https://github.com/jupyter/docker-stacks
+|Name|Port|Reference|
+|-|-|-|
+|nextcloud|8000|https://github.com/nextcloud/docker
+|gitlab|8929|https://docs.gitlab.com/omnibus/docker/
+|pypiserver|8080|https://github.com/pypiserver/pypiserver#using-the-docker-image
+|jupyter|8888|https://github.com/jupyter/docker-stacks
