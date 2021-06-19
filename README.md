@@ -1,4 +1,4 @@
-# docker-compose
+# cvm-docker-compose-yml
 
 docker-compose.yml for fast setup on my CVM.
 
