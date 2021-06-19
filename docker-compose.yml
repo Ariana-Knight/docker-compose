@@ -42,7 +42,10 @@ services:
 
   jupyter:
     container_name: jupyter
+    environment:
+      GRANT_SUDO: 'yes'
     image: jupyter/scipy-notebook:latest
     ports:
       - '8888:8888'
+    user: root
       
